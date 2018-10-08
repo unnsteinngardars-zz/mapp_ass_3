@@ -2,30 +2,52 @@ import React from 'react';
 import {
 	View, Text, StyleSheet, TouchableHighlight, TextInput, Button,
 } from 'react-native';
-import KeyBoardSpacer from 'react-native-keyboard-spacer';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createTodo } from '../redux/todoActions';
+import Color from '../constants/colors';
 
 const styles = StyleSheet.create({
 	container: {
-		// flex: 1,
-		// flexDirection: 'row',
-		// alignItems: 'center',
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'center',
+		backgroundColor: Color.hotpink,
+		marginLeft: 20,
+		marginRight: 20,
+
 	},
 	inputFieldContainer: {
-		// flex: 2,
+		flex: 2,
+	},
+	button: {
+		backgroundColor: Color.white,
 	},
 	buttonContainer: {
 		flex: 1,
+		backgroundColor: Color.white,
+	},
+	buttonFont: {
+		fontSize: 28,
+		color: Color.white,
+	},
+	submitButton: {
+		height: 40,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	submitButtonFont: {
+		color: Color.hotpink,
+		fontSize: 18,
 	},
 	inputField: {
-		borderRadius: 4,
+		// borderRadius: 4,
 		borderWidth: 1,
-		borderColor: '#225455',
+		borderColor: Color.white,
 		height: 40,
 		padding: 5,
 		fontSize: 18,
+		color: Color.white,
 	},
 
 });
@@ -50,6 +72,10 @@ class CreateTodo extends React.Component {
 
 	createTodo = () => {
 		const { button, title } = this.state;
+		if (title === '') {
+			alert('You cant do nothing! Please enter something to do ...');
+			return;
+		}
 		const todo = { title, completed: false, date: new Date() };
 		this.setState({ title: '', button: !button });
 		this.props.createTodo(todo);
@@ -58,7 +84,7 @@ class CreateTodo extends React.Component {
 	renderButton = () => (
 		<View style={styles.container}>
 			<TouchableHighlight onPress={this.toggle}>
-				<Text>Click to create todo!</Text>
+				<Text style={styles.buttonFont}>What to do?</Text>
 			</TouchableHighlight>
 		</View>
 	);
@@ -70,16 +96,18 @@ class CreateTodo extends React.Component {
 					style={styles.inputField}
 					placeholder="Title of todo"
 					onChangeText={value => this.updateState(value)}
-					multiline
+					autoCorrect={false}
+					underlineColorAndroid="transparent"
 				/>
 			</View>
 			<View style={styles.buttonContainer}>
-				<Button
-					title="Submit"
+				<TouchableHighlight
+					style={styles.submitButton}
 					onPress={this.createTodo}
-				/>
+				>
+					<Text style={styles.submitButtonFont}>Submit</Text>
+				</TouchableHighlight>
 			</View>
-			<KeyBoardSpacer />
 		</View>
 	)
 

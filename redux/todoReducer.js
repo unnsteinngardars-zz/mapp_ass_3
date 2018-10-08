@@ -20,6 +20,8 @@ const todoReducer = (state = initialState, action) => {
 			return todo;
 		});
 		return Object.assign({}, state, { todos });
+	case DELETE_TODO:
+		return { ...state, todos: state.todos.filter(item => action.payload !== item) };
 	case CLEAR_LIST:
 		return Object.assign({}, state, { todos });
 	default:

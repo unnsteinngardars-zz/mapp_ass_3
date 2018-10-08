@@ -39,6 +39,7 @@
 		"no-plusplus": [0],
 		"linebreak-style": [0],
 		"no-case-declarations": [0],
-		"import-named": [0]
+		"import-named": [0],
+		"no-floating-decimal": [0]
 	}
 }
