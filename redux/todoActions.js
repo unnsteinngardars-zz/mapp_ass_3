@@ -1,5 +1,5 @@
 import {
-	GET_TODOS, GET_TODO, DELETE_TODO, CREATE_TODO, TOGGLE_STATUS,
+	DELETE_TODO, CREATE_TODO, TOGGLE_STATUS, CLEAR_LIST,
 } from './constants';
 
 export const createTodo = todo => ({
@@ -7,23 +7,17 @@ export const createTodo = todo => ({
 	payload: todo,
 });
 
-export const toggleStatus = id => ({
+export const toggleStatus = todo => ({
 	type: TOGGLE_STATUS,
-	payload: id,
-});
-
-
-export const getAllTodos = todos => ({
-	type: GET_TODOS,
-	payload: todos,
-});
-
-export const getTodo = todo => ({
-	type: GET_TODO,
 	payload: todo,
 });
 
 export const deleteTodo = todo => ({
 	type: DELETE_TODO,
 	payload: todo,
+});
+
+export const clearList = () => ({
+	type: CLEAR_LIST,
+	payload: [],
 });

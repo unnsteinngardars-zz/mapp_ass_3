@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './redux/store';
 import TodoListScreen from './screens/TodoListScreen';
 
 const styles = StyleSheet.create({
@@ -15,9 +16,11 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<View style={styles.container}>
+				{/* <View style={styles.container}> */}
+				<PersistGate loading={null} persistor={persistor}>
 					<TodoListScreen />
-				</View>
+				</PersistGate>
+				{/* </View> */}
 			</Provider>
 		);
 	}

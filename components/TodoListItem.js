@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 class TodoListItem extends React.Component {
 	toggleStatus = () => {
 		const { todo } = this.props;
-		this.props.toggleStatus(todo.id);
+		this.props.toggleStatus(todo);
 	};
 
 	render() {
