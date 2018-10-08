@@ -14,15 +14,17 @@ const styles = StyleSheet.create({
 		flex: 1,
 		paddingTop: 80,
 		alignItems: 'center',
-		// backgroundColor: 'red',
+		backgroundColor: 'red',
 	},
 	todoListContainer: {
 		flex: 10,
-		// backgroundColor: 'blue',
+		backgroundColor: 'blue',
 	},
 	buttonInputContainer: {
 		flex: 2,
 		alignItems: 'center',
+		justifyContent: 'flex-end',
+
 	},
 	titleText: {
 		fontSize: 32,

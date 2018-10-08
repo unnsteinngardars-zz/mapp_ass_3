@@ -2,19 +2,19 @@ import React from 'react';
 import {
 	View, Text, StyleSheet, TouchableHighlight, TextInput, Button,
 } from 'react-native';
-
+import KeyBoardSpacer from 'react-native-keyboard-spacer';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createTodo } from '../redux/todoActions';
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		flexDirection: 'row',
-		alignItems: 'center',
+		// flex: 1,
+		// flexDirection: 'row',
+		// alignItems: 'center',
 	},
 	inputFieldContainer: {
-		flex: 2,
+		// flex: 2,
 	},
 	buttonContainer: {
 		flex: 1,
@@ -70,6 +70,7 @@ class CreateTodo extends React.Component {
 					style={styles.inputField}
 					placeholder="Title of todo"
 					onChangeText={value => this.updateState(value)}
+					multiline
 				/>
 			</View>
 			<View style={styles.buttonContainer}>
@@ -78,6 +79,7 @@ class CreateTodo extends React.Component {
 					onPress={this.createTodo}
 				/>
 			</View>
+			<KeyBoardSpacer />
 		</View>
 	)
 

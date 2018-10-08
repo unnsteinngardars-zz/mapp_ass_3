@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-	View, Text, ScrollView, FlatList,
+	ScrollView, FlatList,
 } from 'react-native';
 
 import { connect } from 'react-redux';
