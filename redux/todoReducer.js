@@ -1,22 +1,27 @@
 import {
-	GET_TODOS, GET_TODO, DELETE_TODO, CREATE_TODO, TOGGLE_STATUS,
+	DELETE_TODO, CREATE_TODO, TOGGLE_STATUS, CLEAR_LIST,
 } from './constants';
 
 
-let incrementedId = 1;
-const initialState = [];
+const initialState = { todos: [] };
 
 const todoReducer = (state = initialState, action) => {
+	let todos = [];
 	switch (action.type) {
 	case CREATE_TODO:
-		return [...state, Object.assign({}, action.payload, { id: incrementedId++ })];
+		// return [...state, Object.assign({}, action.payload, { id: incrementedId++ })];
+		todos = [...state.todos, action.payload];
+		return Object.assign({}, state, { todos });
 	case TOGGLE_STATUS:
-		return state.map(todo => {
-			if (todo.id === action.payload) {
+		todos = state.todos.map(todo => {
+			if (todo.title === action.payload.title && todo.date === action.payload.date) {
 				return Object.assign({}, todo, { completed: !todo.completed });
 			}
 			return todo;
 		});
+		return Object.assign({}, state, { todos });
+	case CLEAR_LIST:
+		return Object.assign({}, state, { todos });
 	default:
 		return state;
 	}
