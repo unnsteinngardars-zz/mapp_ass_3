@@ -9,7 +9,6 @@ const todoReducer = (state = initialState, action) => {
 	let todos = [];
 	switch (action.type) {
 	case CREATE_TODO:
-		// return [...state, Object.assign({}, action.payload, { id: incrementedId++ })];
 		todos = [...state.todos, action.payload];
 		return Object.assign({}, state, { todos });
 	case TOGGLE_STATUS:
