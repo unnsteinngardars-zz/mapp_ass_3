@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-	View, Text, ScrollView, FlatList, StyleSheet, TouchableHighlight, Alert,
+	View, ScrollView, FlatList, StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -20,26 +20,26 @@ const styles = StyleSheet.create({
 });
 
 class TodoList extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-
-		};
-	}
-
 	keyExtractor = (item) => `${item.title}${item.date}`;
+
+	renderSeperator = () => (
+		<View style={[{
+			marginLeft: 5, marginRight: 5, height: 2, backgroundColor: Color.hotpink,
+		}]}
+		/>
+	)
 
 	render() {
 		const { todos } = this.props;
 		return (
 			<View style={styles.container}>
-
 				<View style={styles.listContainer}>
 					<ScrollView>
 						<FlatList
 							data={todos}
 							renderItem={({ item }) => <TodoListItem todo={item} />}
 							keyExtractor={this.keyExtractor}
+							// ItemSeparatorComponent={this.renderSeperator}
 						/>
 					</ScrollView>
 				</View>

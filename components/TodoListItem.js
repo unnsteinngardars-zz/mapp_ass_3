@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-	View, Text, StyleSheet, Switch, TouchableHighlight,
+	View, Text, StyleSheet, Switch, TouchableHighlight, Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+		alignItems: 'center',
 		marginLeft: 20,
 		marginRight: 20,
 		marginTop: 10,
@@ -25,13 +26,15 @@ const styles = StyleSheet.create({
 	switchContainer: {
 		flex: 1,
 		alignItems: 'flex-start',
-		// marginRight: 10,
-		// backgroundColor: 'white',
+	},
+	switch: {
+		transform: Platform.OS === 'android' ? [{ scaleX: 1.5 }, { scaleY: 1.5 }] : [{ scaleX: 1 }, { scaleY: 1 }],
 	},
 	titleText: {
 		fontSize: 18,
 		color: Color.hotpink,
 		fontWeight: 'bold',
+		marginLeft: 10,
 	},
 	rightSwipeItem: {
 		flex: 1,
@@ -92,10 +95,9 @@ class TodoListItem extends React.Component {
 					}}
 				>
 					<View style={styles.container}>
-
 						<View style={styles.switchContainer}>
 							<Switch
-								style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
+								style={styles.switch}
 								value={todo.completed}
 								onValueChange={this.toggleStatus}
 							/>

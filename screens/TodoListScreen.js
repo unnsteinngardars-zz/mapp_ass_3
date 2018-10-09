@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-	Text, View, StyleSheet, TouchableHighlight, Alert,
+	Text, View, StyleSheet, TouchableHighlight, Alert, Platform,
 } from 'react-native';
 import KeyBoardSpacer from 'react-native-keyboard-spacer';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
 	titleContainer: {
 		flex: 1,
 		flexDirection: 'row',
-		// justifyContent: 'center',
+		alignItems: 'center',
 		justifyContent: 'space-around',
-		paddingTop: 30,
+		paddingTop: Platform.OS === 'ios' ? 40 : 30,
 		paddingBottom: 0,
 		backgroundColor: Color.hotpink,
 		borderBottomWidth: 1,
@@ -43,14 +43,11 @@ const styles = StyleSheet.create({
 	titleTextContainer: {
 		flex: 6,
 		marginLeft: 20,
-		// alignItems: 'center',
-		// justifyContent: 'center',
 	},
 	clearButtonContainer: {
 		flex: 1,
 		alignItems: 'flex-end',
 		marginRight: 10,
-		marginTop: 10,
 	},
 	titleText: {
 		fontSize: 32,
@@ -63,11 +60,6 @@ const styles = StyleSheet.create({
 });
 
 class TodoListScreen extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
-
 	clear = () => {
 		Alert.alert('WARNING', 'Are you sure you want to clear all todos ?', [{ text: 'Cancel', onPress: () => {} }, { text: 'OK', onPress: () => { this.props.clearList(); } }], { cancelable: false });
 	}
@@ -82,7 +74,6 @@ class TodoListScreen extends React.Component {
 					<View style={styles.clearButtonContainer}>
 						<TouchableHighlight onPress={this.clear} underlayColor={Color.lightpink}>
 							<Icon name="trash-o" size={30} color={Color.white} />
-							{/* <Text style={styles.clearButtonFont}>Clear List!</Text> */}
 						</TouchableHighlight>
 
 					</View>

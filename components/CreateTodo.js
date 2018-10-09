@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-	View, Text, StyleSheet, TouchableHighlight, TextInput, Button,
+	View, Text, StyleSheet, TouchableHighlight, TextInput,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
 		backgroundColor: Color.hotpink,
 		marginLeft: 20,
 		marginRight: 20,
-
 	},
 	inputFieldContainer: {
 		flex: 2,
@@ -41,7 +40,6 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 	},
 	inputField: {
-		// borderRadius: 4,
 		borderWidth: 1,
 		borderColor: Color.white,
 		height: 40,
@@ -95,6 +93,7 @@ class CreateTodo extends React.Component {
 				<TextInput
 					style={styles.inputField}
 					placeholder="Title of todo"
+					placeholderTextColor={Color.white}
 					onChangeText={value => this.updateState(value)}
 					autoCorrect={false}
 					underlineColorAndroid="transparent"
