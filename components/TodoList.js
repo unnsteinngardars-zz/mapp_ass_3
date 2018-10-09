@@ -1,12 +1,11 @@
 import React from 'react';
 import {
-	View, Text, ScrollView, FlatList, StyleSheet, TouchableHighlight,
+	View, Text, ScrollView, FlatList, StyleSheet, TouchableHighlight, Alert,
 } from 'react-native';
-
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { clearList } from '../redux/todoActions';
 import TodoListItem from './TodoListItem';
+import Color from '../constants/colors';
 
 const styles = StyleSheet.create({
 	container: {
@@ -17,10 +16,7 @@ const styles = StyleSheet.create({
 	listContainer: {
 		flex: 12,
 	},
-	clearButtonContainer: {
-		flex: 0.5,
-		alignItems: 'center',
-	},
+
 });
 
 class TodoList extends React.Component {
@@ -33,14 +29,11 @@ class TodoList extends React.Component {
 
 	keyExtractor = (item) => `${item.title}${item.date}`;
 
-	clear = () => {
-		this.props.clearList();
-	}
-
 	render() {
 		const { todos } = this.props;
 		return (
 			<View style={styles.container}>
+
 				<View style={styles.listContainer}>
 					<ScrollView>
 						<FlatList
@@ -49,11 +42,6 @@ class TodoList extends React.Component {
 							keyExtractor={this.keyExtractor}
 						/>
 					</ScrollView>
-				</View>
-				<View style={styles.clearButtonContainer}>
-					<TouchableHighlight onPress={this.clear}>
-						<Text>Clear List!</Text>
-					</TouchableHighlight>
 				</View>
 			</View>
 		);
@@ -66,11 +54,6 @@ const mapStateToProps = state => ({
 
 TodoList.propTypes = {
 	todos: PropTypes.array.isRequired,
-	clearList: PropTypes.func,
 };
 
-TodoList.defaultProps = {
-	clearList: () => {},
-};
-
-export default connect(mapStateToProps, { clearList })(TodoList);
+export default connect(mapStateToProps)(TodoList);
